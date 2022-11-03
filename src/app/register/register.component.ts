@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomerService } from '../services/customer.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
     Zip: new UntypedFormControl(''),
   })
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -36,6 +37,10 @@ export class RegisterComponent implements OnInit {
        (resp) => console.log(resp),
        (err) => console.log(err),
      );
+  }
+
+  onClick(): void {
+    this.router.navigate(['login']);
   }
 
 }

@@ -14,6 +14,11 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
+  login(username: string, password: string): Observable<any> {
+    const payload = {username: username, password:password};
+    return this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers});
+  }
+
   register(username: string, password: string, firstName: string, lastName: string, address: string, address2: string, city: string, state: string, zip: Number): Observable<any> {
     const payload = {username: username, password: password, firstName: firstName, lastName: lastName,  address: address, address2: address2, city: city, state: state, zip: zip};
     console.log(payload)
